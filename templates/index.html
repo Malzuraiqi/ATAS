@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATAS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="app-shell">
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">Autonomous Device Troubleshooting Assistant</p>
+                <h1>ATAS</h1>
+            </div>
+            <div class="session-pill" id="session-pill">Attempts Used 0</div>
+        </header>
+
+        <main class="layout">
+            <section class="panel controls-panel">
+                <h2>Start Diagnosis</h2>
+                <p class="muted">Choose a device, component, and one or more symptoms.</p>
+
+                <form id="diagnosis-form">
+                    <label for="device">Device</label>
+                    <select id="device" name="device" required>
+                        <option value="">Select a device</option>
+                        <option value="router">Router</option>
+                        <option value="printer">Printer</option>
+                    </select>
+
+                    <label for="component">Component</label>
+                    <select id="component" name="component" required>
+                        <option value="">Select a component</option>
+                        <option value="power">Power</option>
+                        <option value="connectivity">Connectivity</option>
+                        <option value="internal">Internal</option>
+                    </select>
+
+                    <div class="symptom-block">
+                        <div class="symptom-header">
+                            <label>Symptoms</label>
+                        </div>
+                        <div id="symptom-list" class="symptom-list empty-state">
+                            Select a device and component to see symptoms.
+                        </div>
+                    </div>
+
+                    <button type="submit" class="primary-btn" id="diagnose-btn">Diagnose Issue</button>
+                </form>
+
+                <div class="reset-row">
+                    <button type="button" class="secondary-btn" id="reset-btn">Start New Session</button>
+                </div>
+            </section>
+
+            <section class="panel chat-panel">
+                <div class="chat-header">
+                    <h2>Assistant</h2>
+                    <span class="status-dot" id="status-text">Ready</span>
+                </div>
+
+                <div id="chat-log" class="chat-log">
+                    <article class="message assistant">
+                        <p>Welcome to ATAS. Select your device details on the left, and I’ll help diagnose the issue.</p>
+                    </article>
+                </div>
+
+                <section id="action-panel" class="action-panel hidden">
+                    <!-- Buttons will be injected here by JavaScript -->
+                </section>
+            </section>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
